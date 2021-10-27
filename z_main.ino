@@ -10,6 +10,8 @@ void setup() {
 
   init_mqtt_local( );
 
+  init_bh1750( ) ;
+
   init_sched();
 
   Serial.println(F("done Setup"));
@@ -21,13 +23,13 @@ void loop() {
   check_mqtt_reset();
 
   if ( gv_1s ) {
-    //get_LDR_val();
+    check_bh1750();
 
     gv_1s = false;
   }
 
   if ( gv_1m ) {
-    //pub_sens(get_LDR_val());
+    pub_sens( );
 
     gv_1m = false;
   }
